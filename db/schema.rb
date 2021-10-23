@@ -10,17 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_033047) do
+ActiveRecord::Schema.define(version: 2021_10_19_140524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
+  create_table "states", force: :cascade do |t|
+    t.string "abbreviation"
     t.string "name"
-    t.string "User"
-    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "name"
+    t.string "avatar"
+    t.string "address"
+    t.string "address_supplement"
+    t.integer "city_id"
+    t.integer "state_id"
+    t.integer "postal_code"
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_stores_on_city_id"
+    t.index ["postal_code"], name: "index_stores_on_postal_code"
+    t.index ["state_id"], name: "index_stores_on_state_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.string "avatar"
+    t.string "email"
+    t.boolean "confirmed"
+    t.string "encrypted_password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
   end
 
 end
