@@ -10,10 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_19_140524) do
+ActiveRecord::Schema.define(version: 2021_11_02_051650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cart_products", force: :cascade do |t|
+    t.bigint "cart_id"
+    t.bigint "product_id"
+    t.integer "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_cart_products_on_cart_id"
+    t.index ["product_id"], name: "index_cart_products_on_product_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "carts_products", id: false, force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "product_id", null: false
+  end
+
+  create_table "order_products", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.decimal "total_price", precision: 10, scale: 2
+    t.integer "order_status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price", precision: 10, scale: 2
+    t.string "introduce"
+    t.string "cover"
+    t.bigint "store_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_products_on_store_id"
+  end
 
   create_table "states", force: :cascade do |t|
     t.string "abbreviation"
@@ -40,14 +92,13 @@ ActiveRecord::Schema.define(version: 2021_10_19_140524) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
+    t.string "name"
     t.string "phone_number"
     t.string "avatar"
     t.string "email"
     t.boolean "confirmed"
-    t.string "encrypted_password"
+    t.string "password_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
