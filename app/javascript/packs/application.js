@@ -13,3 +13,6 @@ import "bootstrap"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+global.$ = require('jquery')
+global.Rails = Rails;

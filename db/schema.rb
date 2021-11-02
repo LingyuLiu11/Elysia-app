@@ -40,14 +40,13 @@ ActiveRecord::Schema.define(version: 2021_10_19_140524) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
+    t.string "name"
     t.string "phone_number"
     t.string "avatar"
     t.string "email"
     t.boolean "confirmed"
-    t.string "encrypted_password"
+    t.string "password_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -22,23 +22,20 @@ class User < ApplicationRecord
       SecureRandom.urlsafe_base64
   end
 
-  # Remembers a user in the database for use in persistent sessions.
   def remember
-      self.remember_token = User.new_token
-      update_attribute(:remember_digest, User.digest(remember_token))
-      remember_digest
+    self.remember_token = SecureRandom.urlsafe_base64
+    $login_redis_client.set(self.id, self.remember_token, ex: 30 * 24 * 60 * 60)
   end
 
-  # Returns true if the given token matches the digest.
-def authenticated?(remember_token)
-  return false if remember_digest.nil?
-  BCrypt::Password.new(remember_digest).is_password?(remember_token)
-end
+  def authenticated?(remember_token)
+    remember_digest = $login_redis_client.get(self.id)
+    return false if remember_digest.nil?
+    BCrypt::Password.new(remember_digest).is_password?(self.remember_token)
+  end
 
-# Forgets a user.
-def forget
-  update_attribute(:remember_digest, nil)
-end
+  def forget
+    $login_redis_client.del(self.id)
+  end
   # Returns a session token to prevent session hijacking.
   # We reuse the remember digest for convenience.
   def session_token
