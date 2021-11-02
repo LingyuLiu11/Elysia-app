@@ -1,25 +1,28 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, PictureUploader
+  has_secure_password
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
+  after_create :create_cart
   
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: true
-  has_secure_password
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
-  def User.digest(string)
-      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                    BCrypt::Engine.cost
-      BCrypt::Password.create(string, cost: cost)
+  has_one :cart
+  has_many :products, through: :cart
+  has_many :orders
+
+  def self.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
   end
 
   # Returns a random token.
-  def User.new_token
-      SecureRandom.urlsafe_base64
+  def self.new_token
+    SecureRandom.urlsafe_base64
   end
 
   def remember
@@ -39,7 +42,12 @@ class User < ApplicationRecord
   # Returns a session token to prevent session hijacking.
   # We reuse the remember digest for convenience.
   def session_token
-      remember_digest || remember
+    remember_digest || remember
   end
 
+  def create_cart
+    return if self.cart
+    _cart = self.cart.new
+    _cart.save
+  end
 end
