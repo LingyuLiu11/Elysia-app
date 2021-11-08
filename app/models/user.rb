@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   def remember
     self.remember_token = SecureRandom.urlsafe_base64
-    $login_redis_client.set(self.id, self.remember_token, ex: 30 * 24 * 60 * 60)
+    $login_redis_client.set(self.id, self.remember_token)
   end
 
   def authenticated?(remember_token)
@@ -42,12 +42,11 @@ class User < ApplicationRecord
   # Returns a session token to prevent session hijacking.
   # We reuse the remember digest for convenience.
   def session_token
-    remember_digest || remember
+    remember_token || remember
   end
 
   def create_cart
     return if self.cart
-    _cart = self.cart.new
-    _cart.save
+    Cart.create(user: self)
   end
 end

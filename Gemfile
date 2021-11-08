@@ -39,6 +39,8 @@ gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'slim', '~> 4.1'
 # Upload files in your Ruby applications, map them to a range of ORMs, store them on different backends.
 gem 'carrierwave', '~> 2.2', '>= 2.2.2'
+# bootstrap-sass is a Sass-powered version of Bootstrap 3, ready to drop right into your Sass powered applications.
+gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
