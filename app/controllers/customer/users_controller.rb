@@ -8,7 +8,7 @@ class Customer::UsersController < ApplicationController
     end
   
     def index
-      @users = User.order(:id).page(params[:page]).per(10)
+      @users = User.all.order(:id).page(params[:page])
     end
   
     def new

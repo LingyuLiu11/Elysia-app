@@ -1,12 +1,9 @@
 class Customer::StoresController < ApplicationController
   def index
-    @stores = Store.order(:id).page(params[:page]).per(10)
+    @stores = Store.order(:id).paginate(page: params[:page], per_page: 10)
   end
 
-  def new
-    @store = Store.new
-  end
-
-  def create
+  def show
+    @store = Store.find_by_id(params[:id])
   end
 end

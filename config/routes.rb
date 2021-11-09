@@ -10,7 +10,12 @@ Rails.application.routes.draw do
         get :signup, to: 'users#new'
       end
     end
+    resources :stores do
+      resources :products
+    end
   end
+
+
 
   resources :sessions do
     collection do
