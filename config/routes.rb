@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-
   resources :sessions do
     collection do
       get :login, to: "sessions#new"

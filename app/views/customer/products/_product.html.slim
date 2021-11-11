@@ -1,0 +1,9 @@
+.shadow.p-3.mb-5.bg-body.rounded
+  .container
+    .row
+      .col-sm-1 = gravatar_for product, size: 50
+      .col-sm-4
+        .fs-3 = link_to product.name
+        .fs-4 = number_to_currency(product.price)
+
+      /,  customer_store_products_path(store), class: 'no-decoration'

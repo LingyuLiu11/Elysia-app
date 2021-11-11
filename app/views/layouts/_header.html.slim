@@ -1,20 +1,21 @@
-header.navbar.navbar-inverse
-  .container
-    = link_to 'sample app', root_path, id: 'logo'
-    nav
-      ul.nav.navbar-nav.navbar-right
-        li = link_to "Home", root_path
-        li = link_to "Help", help_path
-        - if logged_in?
-          li = link_to "Users", customer_users_path
-          li.dropdown
-            a.dropdown-toggle role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
-              |Account
-              b.caret
-            ul.dropdown-menu aria-labelledby="dropdownMenuLink"
-              li = link_to "Profile", customer_users_path(current_user)
-              li = link_to "Settings", edit_customer_user_path(current_user)
-              li.divider
-              li = link_to "Log out", logout_sessions_path, method: :delete
-        - else
-          li = link_to "Log in", login_sessions_path
+nav.navbar.navbar-expand-lg.navbar-inverse
+  .container-fluid
+    = link_to 'ELYSIA', root_path, id: 'logo'
+    .collapse.navbar-collapse
+    ul.nav.navbar-nav.justify-content-end
+      li.nav-item = link_to "Home", root_path
+      li.nav-item = link_to  "Stores",  customer_stores_path
+      li.nav-item = link_to "Help", help_path
+      - if logged_in?
+        li.nav-item = link_to "Users", customer_users_path
+        li.dropdown.nav-item
+          a.dropdown-toggle.nav-item href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            |Account
+          ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+            li.dropdown-item = link_to "Profile", customer_users_path(current_user)
+            li.dropdown-item = link_to "Settings", edit_customer_user_path(current_user)
+            li
+              hr.divider
+            li.dropdown-item = link_to "Log out", logout_sessions_path, method: :delete
+      - else
+        li.nav-item = link_to "Log in", login_sessions_path
