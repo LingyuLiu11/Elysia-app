@@ -47,7 +47,7 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   def filename
     if original_filename.present?
-      "#{model.Class}-#{Time.now.strftime("%Y-%m-%d")}.#{file.extension}"
+      "#{model.class.to_s.underscore}-#{Time.now.strftime("%Y-%m-%d")}.#{file.extension}"
     end
   end
 end
