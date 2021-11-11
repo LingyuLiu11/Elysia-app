@@ -43,6 +43,8 @@ gem 'carrierwave', '~> 2.2', '>= 2.2.2'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 # will_paginate provides a simple API for performing paginated queries with Active Record, DataMapper and Sequel, and includes helpers for rendering pagination links in Rails, Sinatra, Hanami, and Merb web apps.
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
+# font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
