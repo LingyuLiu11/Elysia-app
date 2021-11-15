@@ -7,7 +7,5 @@
         .fs-4 = number_to_currency(product.price)
       .col-sm-4
         button.btn.btn-outline-primary
-          .fs-3 = fa_icon "shopping-cart", text: "Add To Cart", right: true
-
-
-      /,  customer_store_products_path(store), class: 'no-decoration'
+          = link_to add_customer_carts_path(product_id: product.id), method: :post, remote:  true, class: 'no-decoration'
+            .fs-3 = fa_icon "shopping-cart", text: "Add To Cart", right: true

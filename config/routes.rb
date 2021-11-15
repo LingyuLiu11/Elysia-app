@@ -13,6 +13,13 @@ Rails.application.routes.draw do
     resources :stores do
       resources :products
     end
+
+    resources :carts do
+      collection do
+        post :add, to: 'carts#add'
+        delete :destroy, to: 'carts#destroy'
+      end
+    end
   end
 
   resources :sessions do
