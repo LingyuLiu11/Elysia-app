@@ -33,7 +33,7 @@ class User < ApplicationRecord
   def authenticated?(remember_token)
     remember_digest = $login_redis_client.get(self.id)
     return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(self.remember_token)
+    BCrypt::Password.new(remember_digest).is_password?(self.remember_token) rescue false
   end
 
   def forget

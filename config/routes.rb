@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
     resources :carts do
       collection do
+        patch :update, to: 'carts#update'
         post :add, to: 'carts#add'
         delete :destroy, to: 'carts#destroy'
       end

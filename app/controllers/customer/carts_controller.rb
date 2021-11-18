@@ -1,6 +1,6 @@
 class Customer::CartsController < ApplicationController
 
-  # before_action :logged_in_user
+  before_action :authenticated!
 
   def index
     @cart_products = current_user.cart.cart_products.includes(:product)
@@ -18,6 +18,19 @@ class Customer::CartsController < ApplicationController
         @errors = @cart_product.errors.full_messages.join(", ")
       end
     end
+  end
+
+  def update
+    @cart_product = CartProduct.find_by_id(params[:cart_product_id])
+    number = params[:cart_product][:number].to_i
+    number = [0, number].max
+    number = [99, number].min
+    if number.zero?
+      @cart_product.destroy
+    else
+      @cart_product.update(number: params[:cart_product][:number])
+    end
+    redirect_to customer_carts_path
   end
 
   def destroy

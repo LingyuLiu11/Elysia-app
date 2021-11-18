@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery"
 import "bootstrap"
+import "./carts"
 
 Rails.start()
 Turbolinks.start()
@@ -16,3 +17,5 @@ ActiveStorage.start()
 
 global.$ = require('jquery')
 global.Rails = Rails;
+
+import "controllers"

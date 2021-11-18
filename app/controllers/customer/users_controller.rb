@@ -21,7 +21,7 @@ class Customer::UsersController < ApplicationController
         reset_session
         log_in @user
         flash[:success] = "Welcome to the Sample App!"
-        redirect_to @user
+        redirect_to root_path
       else
         render 'new'
       end

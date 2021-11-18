@@ -45,6 +45,10 @@ gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 # font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.7'
+# A library to read/write files/spreadsheets in Google Drive/Docs.
+gem 'google_drive', '~> 3.0', '>= 3.0.7'
+# Build reactive applications with the Rails tooling you already know and love.
+gem 'stimulus_reflex', '~> 3.4', '>= 3.4.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
