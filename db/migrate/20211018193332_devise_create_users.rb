@@ -12,6 +12,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :password_digest, comments: 'password of user'
       t.boolean :admin, default: false, comments: 'Administrator or not'
       
+      t.string :role, comments: 'role of user'
+      
       t.timestamps null: false
     end
     add_index :users, :email, unique: true
