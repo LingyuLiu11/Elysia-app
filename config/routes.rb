@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
 
+  get '/search', to: 'static_pages#search'
+  get '/search_result', to: 'static_pages#result'
+  get 'static_pages/show'
+  
+
   namespace :customer do
     resources :users do
       collection do

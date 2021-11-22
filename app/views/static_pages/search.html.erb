@@ -1,0 +1,19 @@
+<% provide(:title, 'Search') %>
+<h1 class="text-center my-5">Product Search</h1>
+
+<%= form_tag(search_result_path, remote: true, method: :get) do %>
+  <div class="row mb-5">
+
+
+    <div class="form-group col-md-8">
+      <%= label_tag(:product_name_search, 'Name:') %>
+      <%= text_field_tag :product_name, nil, onkeyup: 'Rails.fire(this.form, "submit")', placeholder: 'Product Name', class: 'form-control' %>
+    </div>
+
+  </div>
+  <div class="col">
+        <%= submit_tag("Search", class: "btn form-control-sm") %>
+      </div>
+<% end %>
+
+<div id="search_result"> </div>

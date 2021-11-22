@@ -1,7 +1,8 @@
-.container.d-flex.justify-content-center
-  .shadow.p-3.mb-5.bg-body.rounded.w-75.p-3
-    .row
-      .col-sm-1 = gravatar_for store, size: 50
-      .col-sm-4
-        .fs-1 = link_to store.name,  customer_store_products_path(store), class: 'no-decoration'
-        .fs-5.text-muted = store.full_address
+- if store
+  .container.d-flex.justify-content-center
+    .shadow.p-3.mb-5.bg-body.rounded.w-75.p-3
+      .row
+        .col-sm-1 = gravatar_for store, size: 50
+        .col-sm-4
+          .fs-1 = link_to store.name,  customer_store_products_path(store), class: 'no-decoration'
+          .fs-5.text-muted = store.full_address
