@@ -5,6 +5,7 @@ nav.navbar.navbar-expand-lg.navbar-inverse
     ul.nav.navbar-nav.justify-content-end
       li.nav-item = link_to "Home", root_path
       li.nav-item = link_to  "Stores",  customer_stores_path
+      li.nav-item = link_to  "Search",  search_path
       li.nav-item = link_to "Help", help_path
       - if logged_in?
         li.nav-item = link_to "Cart", customer_carts_path

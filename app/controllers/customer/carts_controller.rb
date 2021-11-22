@@ -47,4 +47,17 @@ class Customer::CartsController < ApplicationController
     redirect_to customer_carts_path
 
   end
+
+  def show
+    product = Product.find_by_id(params[:product_id])
+    if product
+      @cart_product = current_user.cart.cart_products.find_or_initialize_by(product_id: product.id)
+      @cart_product.number ||= 0
+      @cart_product.number += 1
+      if !@cart_product.save
+        @errors = @cart_product.errors.full_messages.join(", ")
+      end
+    end
+    redirect_to customer_carts_path
+  end
 end

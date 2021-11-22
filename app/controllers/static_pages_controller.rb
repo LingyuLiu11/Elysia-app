@@ -10,4 +10,20 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def search
+    @products = Product.all
+  end
+
+  def result
+    
+    @products = Product.where('lower(name) LIKE ?', "%#{params[:product_name].downcase}%")
+    render 'show'
+  end
+
+  def show
+    @product = Product.find(params[:id])
+  end
+
+  
 end
