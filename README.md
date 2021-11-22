@@ -22,8 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-Heroku Link: https://mighty-bayou-30629.herokuapp.com/
-
-test Heroku Link: https://cryptic-tundra-92786.herokuapp.com/
+Heroku Link: https://protected-river-89609.herokuapp.com/
 
 test repository: https://github.com/LingyuLiu11/rbr
