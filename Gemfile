@@ -50,6 +50,8 @@ gem 'google_drive', '~> 3.0', '>= 3.0.7'
 # Build reactive applications with the Rails tooling you already know and love.
 gem 'stimulus_reflex', '~> 3.4', '>= 3.4.1'
 
+gem 'mailboxer', github: 'mailboxer/mailboxer'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

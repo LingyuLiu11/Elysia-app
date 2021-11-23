@@ -4,6 +4,8 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   after_create :create_cart
+
+  acts_as_messageable
   
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -15,6 +17,10 @@ class User < ApplicationRecord
   has_many :products, through: :cart
   has_many :orders
 
+  def mailboxer_email(object)
+    nil
+  end
+  
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)

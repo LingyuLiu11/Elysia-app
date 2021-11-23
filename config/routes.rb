@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get '/search', to: 'static_pages#search'
   get '/search_result', to: 'static_pages#result'
   get 'static_pages/show'
-  
+  get  '/conversations',    to: 'conversations#index'
+
+  resources :conversations do
+    resources :messages
+  end
 
   namespace :customer do
     resources :users do
