@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_030432) do
+ActiveRecord::Schema.define(version: 2021_11_24_201213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_030432) do
   create_table "cart_products", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "product_id"
-    t.integer "number", default: 0
+    t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_cart_products_on_cart_id"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(version: 2021_11_23_030432) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "carts_products", id: false, force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "product_id", null: false
   end
 
   create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|
@@ -150,6 +155,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_030432) do
     t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
   end
