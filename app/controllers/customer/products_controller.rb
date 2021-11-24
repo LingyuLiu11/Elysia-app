@@ -1,7 +1,11 @@
 class Customer::ProductsController < ApplicationController
   before_action :set_store
   def index
-    @products = @store.products.order(:id).paginate(page: params[:page], per_page: 10)
+    if params[:product_name]
+      @products = Product.where('lower(name) LIKE ?', "%#{params[:product_name].downcase}%")
+    else
+      @products = @store.products.order(:id).paginate(page: params[:page], per_page: 10)
+    end
   end
 
   def show

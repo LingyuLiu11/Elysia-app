@@ -2,23 +2,31 @@ nav.navbar.navbar-expand-lg.navbar-inverse
   .container-fluid
     h1 = link_to 'ELYSIA', root_path, id: 'logo', class: 'no-decoration'
     .collapse.navbar-collapse
+    = form_with url: customer_products_path, remote: true, method: :get do |f|
+
+      = f.label      :product_name
+      = f.text_field :product_name
+      = submit_tag "search"
     ul.nav.navbar-nav.justify-content-end
       li.nav-item = link_to "Home", root_path
-      li.nav-item = link_to  "Stores",  customer_stores_path
-      li.nav-item = link_to  "Search",  search_path
-      li.nav-item = link_to "Help", help_path
-      li.nav-item = link_to "Message", conversations_path
+      
       - if logged_in?
-        li.nav-item = link_to "Cart", customer_carts_path
-        /li.nav-item = link_to "Users", customer_users_path
-        li.dropdown.nav-item
-          a.dropdown-toggle.nav-item href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            |Account
-          ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-            li.dropdown-item = link_to "Profile", customer_user_path(current_user)
-            li.dropdown-item = link_to "Settings", edit_customer_user_path(current_user)
-            li
-              hr.divider
-            li.dropdown-item = link_to "Log out", logout_sessions_path, method: :delete
+        li.nav-item = link_to "Message", conversations_path
+        - if current_user.role == "customer"
+          li.nav-item = link_to  "Stores",  customer_stores_path
+          li.nav-item = link_to  "Search",  search_path
+          li.nav-item = link_to "Help", help_path
+        
+          li.nav-item = link_to "Cart", customer_carts_path
+          /li.nav-item = link_to "Users", customer_users_path
+          li.dropdown.nav-item
+            a.dropdown-toggle.nav-item href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+              |Account
+            ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+              li.dropdown-item = link_to "Profile", customer_user_path(current_user)
+              li.dropdown-item = link_to "Settings", edit_customer_user_path(current_user)
+              li
+                hr.divider
+              li.dropdown-item = link_to "Log out", logout_sessions_path, method: :delete
       - else
         li.nav-item = link_to "Log in", login_sessions_path

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/search_result', to: 'static_pages#result'
   get 'static_pages/show'
   get  '/conversations',    to: 'conversations#index'
+  
+  
 
   resources :conversations do
     resources :messages
@@ -22,6 +24,8 @@ Rails.application.routes.draw do
     resources :stores do
       resources :products
     end
+
+    resources :products
 
     resources :carts do
       collection do

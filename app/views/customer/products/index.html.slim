@@ -1,3 +1,7 @@
-h1 = @store.name
-= render @products
-= will_paginate @products
+- if @store
+    h1 = @store.name
+    = render @products
+    = will_paginate @products
+- else
+    h1 Search Result
+    = render @products
