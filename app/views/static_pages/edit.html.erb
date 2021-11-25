@@ -1,16 +1,19 @@
 <% provide(:title, "Edit product") %>
-<h1>Edit product1</h1>
+<h1>Edit product</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: [:customer, @product], local: true) do |f| %>
-      
+    <%= form_with(model: [:product, @product], local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
 
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :price %>
       <%= f.number_field :price, class: 'form-control' %>
+
+
+      
 
       <%= f.submit "Add product", class: "btn btn-primary" %>
     <% end %>

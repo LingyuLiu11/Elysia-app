@@ -11,6 +11,10 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+  def edit
+    redirect_to root_path
+  end
+
   def search
     @products = Product.all
   end
