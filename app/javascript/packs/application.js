@@ -10,6 +10,7 @@ import "channels"
 import "jquery"
 import "bootstrap"
 import "./carts"
+import "./google_map"
 
 Rails.start()
 Turbolinks.start()

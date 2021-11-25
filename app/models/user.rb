@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :products, through: :cart
   has_many :orders
 
-  enum role: [:customer,  :admin]
+  enum role: [:customer, :admin]
 
   def mailboxer_email(object)
     nil
