@@ -13,7 +13,7 @@
       <%= f.number_field :price, class: 'form-control' %>
 
       <%= f.label :store_id %>
-      <%= collection_select(:store_name, :store_id, Store.all,:id, :name,{prompt: 'Select store'}, class: 'form-control') %>
+      <%= f.select :store_id, Store.all.pluck(:name, :id) ,{prompt: 'Select store'}, class: 'form-control' %>
       
 
       <%= f.submit "Add product", class: "btn btn-primary" %>
