@@ -31,6 +31,6 @@ class Customer::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, :store_id)
   end
 end
