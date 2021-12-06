@@ -8,7 +8,6 @@ nav.navbar.navbar-expand-lg.navbar-inverse
       = f.text_field :product_name
       = submit_tag "search"
     ul.nav.navbar-nav.justify-content-end
-      li.nav-item = link_to "Home", root_path
       
       - if logged_in?
         li.nav-item = link_to "Message", conversations_path
@@ -17,8 +16,7 @@ nav.navbar.navbar-expand-lg.navbar-inverse
           li.nav-item = link_to  "Edit",  edit_path
         - if current_user.role == "customer"
           li.nav-item = link_to  "Stores",  customer_stores_path
-          li.nav-item = link_to  "Search",  search_path
-          li.nav-item = link_to "Help", help_path
+          
         
           li.nav-item = link_to "Cart", customer_carts_path
           /li.nav-item = link_to "Users", customer_users_path
@@ -28,6 +26,7 @@ nav.navbar.navbar-expand-lg.navbar-inverse
             ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
               li.dropdown-item = link_to "Profile", customer_user_path(current_user)
               li.dropdown-item = link_to "Settings", edit_customer_user_path(current_user)
+              li.dropdown-item = link_to "Help", help_path
               li
                 hr.divider
               li.dropdown-item = link_to "Log out", logout_sessions_path, method: :delete
