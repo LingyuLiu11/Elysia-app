@@ -51,6 +51,8 @@ gem 'google_drive', '~> 3.0', '>= 3.0.7'
 gem 'stimulus_reflex', '~> 3.4', '>= 3.4.1'
 
 gem 'mailboxer', github: 'mailboxer/mailboxer'
+# This is a ruby wrapper for the Google Maps api
+gem 'google-maps', '~> 3.0', '>= 3.0.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

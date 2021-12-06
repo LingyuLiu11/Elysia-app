@@ -12,6 +12,7 @@
       <%= f.label :price %>
       <%= f.number_field :price, class: 'form-control' %>
 
+      <%= f.label :store_id %>
       <%= f.select :store_id, Store.all.pluck(:name, :id) ,{prompt: 'Select store'}, class: 'form-control' %>
       
 
