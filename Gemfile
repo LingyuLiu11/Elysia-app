@@ -50,6 +50,8 @@ gem 'google_drive', '~> 3.0', '>= 3.0.7'
 # Build reactive applications with the Rails tooling you already know and love.
 gem 'stimulus_reflex', '~> 3.4', '>= 3.4.1'
 
+gem 'react-rails'
+
 gem 'mailboxer', github: 'mailboxer/mailboxer'
 # This is a ruby wrapper for the Google Maps api
 gem 'google-maps', '~> 3.0', '>= 3.0.6'
