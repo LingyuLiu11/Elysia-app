@@ -22,7 +22,7 @@ ActiveStorage.start()
 global.$ = require('jquery')
 global.Rails = Rails;
 
-import "controllers"
+// import "controllers"
 // // Support component names relative to this directory:
 // var componentRequireContext = require.context("components", true);
 // var ReactRailsUJS = require("react_ujs");
