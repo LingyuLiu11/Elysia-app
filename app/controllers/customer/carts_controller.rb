@@ -4,8 +4,7 @@ class Customer::CartsController < ApplicationController
 
   def index
     @cart_products = current_user.cart.cart_products.includes(:product)
-    @cart = @cart_products.group_by(&:product)
-    # byebug
+    @cart = @cart_products.order(:id).group_by(&:product)
   end
 
   def add
